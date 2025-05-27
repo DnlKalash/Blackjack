@@ -114,10 +114,6 @@ class User(Document):
 
 ---
 
-## 📊 Statystyki Projektu
-
-- **Aplikacje**: 2 (main, blackjack)
-
 ### Funkcjonalności
 - ✅ Pełna gra Blackjack
 - ✅ System użytkowników
