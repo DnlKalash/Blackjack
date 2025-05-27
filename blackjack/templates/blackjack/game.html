@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack Game</title>
+</head>
+<body>
+    <h1>Blackjack</h1>
+
+    <p><strong>Balance:</strong> {{ balance }}</p>
+    <p><strong>Current Bet:</strong> {{ bet }}</p>
+
+    <h2>Player's Cards</h2>
+    <ul>
+        {% for card in game.player_cards %}
+            <li>{{ card.0 }} {{ card.1 }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Dealer's Cards</h2>
+    <ul>
+        {% for card in game.dealer_cards %}
+            <li>{{ card.0 }} {{ card.1 }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if game.winner %}
+        <h2>Result: 
+            {% if game.winner == "player" %}
+                You win!
+            {% elif game.winner == "dealer" %}
+                You lose.
+            {% elif game.winner == "draw" %}
+                It's a draw.
+            {% endif %}
+        </h2>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Bet amount:</label>
+        <input type="number" name="bet_amount" min="1" placeholder="Enter your bet">
+        <button type="submit" name="action" value="bet">Place Bet</button>
+    </form>
+
+    {% if not game.is_over %}
+        <form method="post" style="margin-top: 10px;">
+            {% csrf_token %}
+            <button type="submit" name="action" value="hit">Hit</button>
+            <button type="submit" name="action" value="stand">Stand</button>
+        </form>
+    {% else %}
+        <form method="post" style="margin-top: 10px;">
+            {% csrf_token %}
+            <button type="submit" name="action" value="play_again">Play Again</button>
+        </form>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Poker Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #111; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        form { background: #222; padding: 30px; border-radius: 10px; width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; }
+        button { padding: 10px; width: 100%; background: #007bff; border: none; border-radius: 5px; color: white; font-weight: bold; }
+        a { color: #0af; text-decoration: none; display: block; text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <a href="{% url 'register' %}">Don't have an account?</a>
+</body>
+</html>

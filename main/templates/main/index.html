@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blackjack — Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #006400;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background-color: #222;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 15px;
+    }
+
+    header a,
+    header form button {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 8px 15px;
+      border: 2px solid #ffcc00;
+      border-radius: 5px;
+      background: none;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header a:hover,
+    header form button:hover {
+      background-color: #ffcc00;
+      color: black;
+    }
+
+    h1 {
+      margin: 40px 0 20px 0;
+      font-size: 2.5em;
+    }
+
+    .game-container {
+      margin-top: 30px;
+    }
+
+    .button-link {
+      display: inline-block;
+      padding: 15px 50px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffcc00;
+      color: black;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .button-link:hover {
+      background-color: #e6b800;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      {% if username %}
+        Hello, {{ username }}!
+      {% else %}
+        Welcome!
+      {% endif %}
+    </div>
+
+    <div class="header-right">
+      {% if username %}
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Registration</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <h1>Welcome to Blackjack!</h1>
+
+  <div class="game-container">
+    <a href="{% url 'blackjack_view' %}">Start Game</a>
+  </div>
+
+</body>
+</html>
