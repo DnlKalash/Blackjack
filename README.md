@@ -20,7 +20,7 @@ myproject/
 - **Backend**: Django 5.2+
 - **Baza Danych**: MongoDB (MongoEngine)
 - **Autentyfikacja**: JWT (JSON Web Tokens)
-- **Frontend**: HTML5, CSS3, JavaScript
+- **Frontend**: Standardowe szablony HTML
 - **Hosting Bazy**: MongoDB Atlas
 
 ---
@@ -62,13 +62,11 @@ myproject/
 - **Motyw kasyna**: Zielone tło, złote akcenty (#ffcc00)
 - **Intuicyjny interfejs**: Czytelne przyciski akcji
 - **Dynamiczne updates**: Aktualizacja stanu gry w czasie rzeczywistym
-- **Mobile-friendly**: Responsywny design dla urządzeń mobilnych
 
 ### Strony Aplikacji
 - **Strona główna**: Powitanie i nawigacja
 - **Rejestracja/Logowanie**: Formularze z walidacją
 - **Gra Blackjack**: Główny interfejs gry
-- **Panel gracza**: Wyświetlanie salda i historii
 
 ---
 
@@ -172,7 +170,7 @@ python manage.py runserver
 
 ## 👨‍💻 Informacje o Projekcie
 
-**Status**: Funkcjonalny prototyp  
+**Status**: Projekt dla uczelni  
 **Technologie**: Django, MongoDB, JWT, HTML/CSS  
 **Architektura**: MVC (Model-View-Controller)  
 **Baza danych**: NoSQL (MongoDB)  
@@ -181,9 +179,8 @@ python manage.py runserver
 - Zaawansowane wykorzystanie Django
 - Integrację z MongoDB
 - Implementację JWT authentication
-- Logikę gier hazardowych
+- Logika gry w blackjacka
 - Responsive web design
 
 ---
 
-*Projekt stworzony jako demonstracja umiejętności full-stack development z wykorzystaniem nowoczesnych technologii webowych.*
