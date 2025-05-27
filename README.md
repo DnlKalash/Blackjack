@@ -2,7 +2,7 @@
 
 ## 📋 Opis Projektu
 
-**Blackjack Web Game** to kompleksowa aplikacja webowa stworzona w Django, która umożliwia grę w klasycznego Blackjacka online. Projekt łączy w sobie zaawansowaną logikę gry, system autentyfikacji użytkowników oraz nowoczesny interfejs użytkownika.
+**Blackjack Web Game** to kompleksowa aplikacja webowa stworzona w Django, która umożliwia grę w klasycznego Blackjacka. Projekt łączy w sobie zaawansowaną logikę gry, system autentyfikacji użytkowników oraz nowoczesny interfejs użytkownika.
 
 ---
 
@@ -88,7 +88,7 @@ class User(Document):
 
 ### Routing URL
 ```python
-# Główne ścieżki
+
 '/' - Strona główna
 '/register' - Rejestracja
 '/login' - Logowanie
@@ -116,10 +116,6 @@ class User(Document):
 
 ## 📊 Statystyki Projektu
 
-### Pliki Kodu
-- **Python Files**: 12 plików
-- **HTML Templates**: 4 szablony
-- **Linie kodu**: ~500+ linii
 - **Aplikacje**: 2 (main, blackjack)
 
 ### Funkcjonalności
@@ -132,12 +128,7 @@ class User(Document):
 
 ---
 
-## 🚀 Deployment i Uruchomienie
 
-### Wymagania
-```bash
-pip install django mongoengine pyjwt djongo
-```
 
 ### Konfiguracja
 1. **MongoDB Atlas**: Połączenie z chmurową bazą danych
@@ -149,24 +140,7 @@ pip install django mongoengine pyjwt djongo
 python manage.py runserver
 ```
 
----
 
-## 📈 Możliwości Rozwoju
-
-### Planowane Funkcjonalności
-- **Multiplayer**: Gra wieloosobowa
-- **Tournaments**: System turniejów
-- **Statistics**: Szczegółowe statystyki gracza
-- **Mobile App**: Aplikacja mobilna
-- **Live Chat**: Czat między graczami
-
-### Optymalizacje
-- **Caching**: Redis dla lepszej wydajności
-- **API**: REST API dla aplikacji mobilnej
-- **Testing**: Unit tests i integration tests
-- **CI/CD**: Automatyczne wdrażanie
-
----
 
 ## 👨‍💻 Informacje o Projekcie
 
