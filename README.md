@@ -154,7 +154,7 @@ python manage.py runserver
 
 ---
 
-# Архитектура системы Blackjack
+# UWL Blackjack
 
 ```mermaid
 graph TB
