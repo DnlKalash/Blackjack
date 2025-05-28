@@ -156,61 +156,88 @@ python manage.py runserver
 
 # UWL Blackjack
 
+  
+
 ```mermaid
+
 graph TB
-    %% URL endpoints
-    URLs[URLe<br/>+lista_wzorce_url_glowne<br/>+lista_wzorce_url_blackjack]
-    
-    %% Interface layer
-    Interface[Interfejs gry<br/>obsługuje akcje gracza]
-    Auth[Autentyfikacja JWT<br/>zarządzanie użytkownikami]
-    
-    %% Main controller
-    WidokGlowny[WidokGlowny<br/>+html_szablon zadania : HttpResponse<br/>+rejestracja zadania : HttpResponse<br/>+logowanie zadania : HttpResponse<br/>+wylogowanie zadania : HttpResponse<br/>+wymagane_jwt funkcja_widoku]
-    
-    %% Blackjack logic
-    WidokBlackjack[WidokBlackjack<br/>+widok_blackjack zadania : HttpResponse]
-    
-    LogikaBlackjack[LogikaBlackjack<br/>-Dict sesja<br/>-Dict gra<br/>+__init__ zadanie<br/>+zapisz_gre<br/>+stworz_nowa_gre saldo : Dict<br/>+pierwszy_zaklad kwota<br/>+dobierz<br/>+pas<br/>+dobierz_karte : Tuple<br/>+aktualizuj_punkty kto, karty : int<br/>+oblicz_punkty karty : int<br/>+ocenij_zwyciezce<br/>+restart]
-    
-    GlownaLogika[Główna logika gry<br/>zarządca stanu gry + sesji]
-    
-    %% Forms
-    FormularzAkcjiGry[FormularzAkcjiGry<br/>+ChoiceField akcja<br/>-Lista AKCJE]
-    
-    FormularzUzytkownika[FormularzUzytkownika<br/>+CharField nazwa_uzytkownika<br/>+EmailField email<br/>+CharField haslo<br/>+waliduj_nazwa_uzytkownika : String<br/>+waliduj_email : String<br/>+waliduj_haslo : String<br/>+zapisz : Uzytkownik]
-    
-    %% Configuration
-    Konfiguracja[Konfiguracja<br/>+String SECRET_KEY<br/>+Boolean DEBUG<br/>+Lista INSTALLED_APPS<br/>+Lista MIDDLEWARE<br/>+Dict DATABASES<br/>+String BLACKJACK_SESSION_ID]
-    
-    %% User model
-    Uzytkownik[Uzytkownik<br/>-String nazwa_uzytkownika<br/>-String email<br/>-String haslo<br/>-Lista list ostatni_wynik<br/>+ustaw_haslo surowe_haslo<br/>+sprawdz_haslo surowe_haslo : bool<br/>+zapisz]
-    
-    %% MongoDB integration
-    MongoDB[Model MongoDB<br/>przy użyciu MongoEngine]
-    
-    %% Relationships
-    URLs --> Interface
-    URLs --> WidokGlowny
-    Interface --> WidokGlowny
-    Auth --> WidokGlowny
-    
-    WidokGlowny --> FormularzUzytkownika
-    WidokGlowny --> Uzytkownik
-    
-    WidokBlackjack --> LogikaBlackjack
-    GlownaLogika --> LogikaBlackjack
-    
-    LogikaBlackjack --> FormularzAkcjiGry
-    FormularzAkcjiGry --> LogikaBlackjack
-    
-    LogikaBlackjack --> Konfiguracja
-    FormularzUzytkownika --> Uzytkownik
-    Uzytkownik --> MongoDB
-    
-    %% Labels for relationships
-    WidokGlowny -.->|kieruje do| WidokBlackjack
-    WidokBlackjack -.->|używa| LogikaBlackjack
-    LogikaBlackjack -.->|korzysta z| Konfiguracja
-    FormularzUzytkownika -.->|tworzy| Uzytkownik
-    Uzytkownik -.->|zarządza| MongoDB
+
+%% URL endpoints
+
+URLs[URLs<br/>+url_main<br/>+url_blackjack]
+
+%% Interface layer
+
+
+
+Auth[Autentyfikacja JWT<br/>zarządzanie użytkownikami]
+
+%% Main controller
+
+WidokGlowny[Main.views<br/>+htmlshablon : HttpResponse<br/>+register : HttpResponse<br/>+login  : HttpResponse<br/>+logout : HttpResponse<br/>+jwt_required]
+
+%% Blackjack logic
+
+WidokBlackjack[Blackjack.views<br/>+widok_blackjack zadania : HttpResponse]
+
+LogikaBlackjack[logic<br/>-Dict sesja<br/>-Dict gra<br/>+__init__ zadanie<br/>+save_game<br/>+create_new_game : Dict<br/>+first_bet balance <br/>+Hit<br/>+stand<br/>+draw_card : Tuple<br/>+update_scores who cards : int<br/>+calculate_score cards : int<br/>+determine_winner<br/>+reset]
+
+
+
+%% Forms
+
+FormularzAkcjiGry[GameActionFormy<br/>+ChoiceField akcja<br/>-Lista AKCJE]
+
+FormularzUzytkownika[UserForm<br/>+CharField nazwa_uzytkownika<br/>+EmailField email<br/>+CharField haslo<br/>+waliduj_nazwa_uzytkownika : String<br/>+waliduj_email : String<br/>+waliduj_haslo : String<br/>+zapisz : Uzytkownik]
+
+%% Configuration
+
+
+
+%% User model
+
+Uzytkownik[User<br/>-String nazwa_uzytkownika<br/>-String email<br/>-String haslo<br/>-Lista list ostatni_wynik<br/>+ustaw_haslo surowe_haslo<br/>+sprawdz_haslo surowe_haslo : bool<br/>+zapisz]
+
+%% MongoDB integration
+
+MongoDB[Model MongoDB<br/>przy użyciu MongoEngine]
+
+%% Relationships
+
+
+
+URLs --> WidokGlowny
+
+
+
+Auth --> WidokGlowny
+
+WidokGlowny --> FormularzUzytkownika
+
+WidokGlowny --> Uzytkownik
+
+WidokBlackjack --> LogikaBlackjack
+
+
+
+WidokBlackjack --> FormularzAkcjiGry
+
+FormularzAkcjiGry --> LogikaBlackjack
+
+
+
+
+
+
+
+%% Labels for relationships
+
+WidokGlowny -.->|kieruje do| URLs
+URLs -.->|kieruje do| WidokBlackjack
+
+
+
+
+FormularzUzytkownika -.->|tworzy| Uzytkownik
+
+Uzytkownik -.->|zarządza| MongoDB
